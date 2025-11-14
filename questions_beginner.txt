@@ -1,0 +1,38 @@
+TYPE:MC
+QUESTION:What is a derivative?
+A:The rate of change of a function
+B:The area under a curve
+C:The maximum value of a function
+D:The integral of a function
+ANSWER:A
+HINT:Think about how fast something is changing - like speed is the rate of change of distance.
+
+TYPE:MC
+QUESTION:What is the derivative of a constant (like f(x) = 5)?
+A:5
+B:0
+C:1
+D:x
+ANSWER:B
+HINT:Constants don't change, so their rate of change is zero!
+
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = x^2
+ANSWER:2
+TOLERANCE:0.01
+HINT:Use the power rule: d/dx(x^n) = n*x^(n-1). What happens when n=2?
+
+TYPE:MC
+QUESTION:What is the power rule for derivatives?
+A:d/dx(x^n) = n*x^(n-1)
+B:d/dx(x^n) = x^n
+C:d/dx(x^n) = n*x^n
+D:d/dx(x^n) = x^(n-1)
+ANSWER:A
+HINT:Remember: bring down the exponent, then subtract 1 from the exponent.
+
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = 3x
+ANSWER:3
+TOLERANCE:0.01
+HINT:The derivative of x is 1, and the constant 3 stays. So 3*1 = ?

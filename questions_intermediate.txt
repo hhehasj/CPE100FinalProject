@@ -1,0 +1,35 @@
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = x^3 + 2x^2 - 5x + 7
+ANSWER:9
+TOLERANCE:0.01
+HINT:Use the power rule on each term separately. The derivative of a sum is the sum of derivatives. What's 3x^2 + 4x - 5 when x=1?
+
+TYPE:MC
+QUESTION:What is the product rule for derivatives?
+A:(fg)' = f'g + fg'
+B:(fg)' = f'g'
+C:(fg)' = f'g - fg'
+D:(fg)' = (f'+g')/2
+ANSWER:A
+HINT:Think "first times derivative of second PLUS second times derivative of first"
+
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = (x^2)(x+1) at x=2. Round to 2 decimal places.
+ANSWER:10
+TOLERANCE:0.01
+HINT:Use product rule: f'g + fg'. If f=x^2 and g=x+1, then f'=2x and g'=1
+
+TYPE:MC
+QUESTION:What is the chain rule used for?
+A:Finding derivatives of composite functions
+B:Finding derivatives of products
+C:Finding derivatives of quotients
+D:Finding derivatives of constants
+ANSWER:A
+HINT:The chain rule is for functions within functions, like f(g(x))
+
+TYPE:NUM
+QUESTION:Find dy/dx if y = (2x + 1)^2. Evaluate at x=1. Round to 2 decimal places.
+ANSWER:12
+TOLERANCE:0.01
+HINT:Chain rule: dy/dx = 2(2x+1) * 2. When x=1, this equals 2(3)*2 = ?

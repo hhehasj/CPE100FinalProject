@@ -1,0 +1,35 @@
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = sin(x^2) at x=π/2. Round to 2 decimal places.
+ANSWER:3.14
+TOLERANCE:0.05
+HINT:Chain rule: f'(x) = cos(x^2) * 2x. At x=π/2, this is cos((π/2)^2) * π
+
+TYPE:MC
+QUESTION:What is the quotient rule for derivatives?
+A:(f/g)' = (f'g - fg')/g^2
+B:(f/g)' = (f'g + fg')/g^2
+C:(f/g)' = f'/g'
+D:(f/g)' = (f' - g')/g
+ANSWER:A
+HINT:"Low d-high minus high d-low, all over low squared" - that's the quotient rule!
+
+TYPE:NUM
+QUESTION:Find f'(x) if f(x) = e^(2x) at x=0. Round to 2 decimal places.
+ANSWER:2
+TOLERANCE:0.01
+HINT:The derivative of e^(kx) is k*e^(kx). When x=0, e^0 = 1, so the answer is just k.
+
+TYPE:MC
+QUESTION:What is implicit differentiation used for?
+A:Finding derivatives when y cannot be easily solved for
+B:Finding derivatives of exponential functions
+C:Finding derivatives of trigonometric functions
+D:Finding antiderivatives
+ANSWER:A
+HINT:Implicit differentiation treats y as a function of x without solving for y explicitly.
+
+TYPE:NUM
+QUESTION:Find dy/dx using implicit differentiation: x^2 + y^2 = 25, at point (3,4). Round to 2 decimal places.
+ANSWER:-0.75
+TOLERANCE:0.01
+HINT:Differentiate both sides: 2x + 2y(dy/dx) = 0. Solve for dy/dx = -x/y. At (3,4): -3/4 = ?

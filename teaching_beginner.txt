@@ -1,0 +1,31 @@
+SECTION:Introduction to Derivatives
+CONTENT:A derivative represents the rate of change of a function. Just like speed tells us how fast distance changes over time, a derivative tells us how fast a function's output changes as its input changes. The notation f'(x) or dy/dx represents the derivative.
+EXAMPLE:If f(x) = x^2, find f'(x)
+STEP1:Identify that we need to use the power rule
+STEP2:The power rule states: d/dx(x^n) = n*x^(n-1)
+STEP3:Here n = 2, so we get: f'(x) = 2*x^(2-1) = 2x
+STEP4:Therefore, f'(x) = 2x
+---
+SECTION:The Constant Rule
+CONTENT:The derivative of any constant is always zero. This makes sense because constants don't change - they have zero rate of change! For example, d/dx(5) = 0, d/dx(100) = 0, d/dx(-7) = 0.
+EXAMPLE:Find the derivative of f(x) = 8
+STEP1:Recognize that 8 is a constant
+STEP2:Apply the constant rule: the derivative of any constant is 0
+STEP3:Therefore, f'(x) = 0
+---
+SECTION:The Power Rule
+CONTENT:The power rule is one of the most important rules in calculus. It states: d/dx(x^n) = n*x^(n-1). To use it, multiply by the exponent, then subtract 1 from the exponent. This works for any real number n.
+EXAMPLE:Find the derivative of f(x) = x^4
+STEP1:Identify that the exponent n = 4
+STEP2:Bring down the exponent: 4*x
+STEP3:Subtract 1 from the original exponent: 4*x^(4-1)
+STEP4:Simplify: f'(x) = 4x^3
+---
+SECTION:The Constant Multiple Rule
+CONTENT:When a constant is multiplied by a function, we can factor it out when taking the derivative. The rule is: d/dx(c*f(x)) = c*f'(x), where c is a constant. The constant stays, and we just take the derivative of the function.
+EXAMPLE:Find the derivative of f(x) = 5x^2
+STEP1:Identify the constant (5) and the function (x^2)
+STEP2:Keep the constant: 5 * d/dx(x^2)
+STEP3:Apply power rule to x^2: 5 * 2x
+STEP4:Simplify: f'(x) = 10x
+---

@@ -51,12 +51,12 @@ make rebuild
 
 ### Manual Compilation
 ```bash
-gcc main.c question_loader.c teaching_loader.c quiz_engine.c teaching_renderer.c level_rules.c -o calculus_learning -lm -Wall -std=c99
+gcc main.c question_loader.c teaching_loader.c quiz_engine.c teaching_renderer.c level_rules.c -o CPE100FINALPROJECT -lm -Wall -std=c99
 ```
 
 ## How to Run
 ```bash
-./calculus_learning
+./CPE100FINALPROJECT
 ```
 
 ## Passing Criteria
@@ -159,6 +159,3 @@ To test if everything works:
 - Course: CPE100
 - Project: Calculus 1 Learning System
 - Language: C
-
----
-Good luck with your learning journey! 📚✨

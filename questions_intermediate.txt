@@ -1,6 +1,6 @@
 TYPE:NUM
-QUESTION:Find the derivative of f(x) = x^3 + 2x^2 - 5x + 7
-ANSWER:9
+QUESTION:Find value of the derivative f(x) = x^3 + 2x^2 - 5x + 7 when x = 1
+ANSWER:2
 TOLERANCE:0.01
 HINT:Use the power rule on each term separately. The derivative of a sum is the sum of derivatives. What's 3x^2 + 4x - 5 when x=1?
 
@@ -15,7 +15,7 @@ HINT:Think "first times derivative of second PLUS second times derivative of fir
 
 TYPE:NUM
 QUESTION:Find the derivative of f(x) = (x^2)(x+1) at x=2. Round to 2 decimal places.
-ANSWER:10
+ANSWER:16
 TOLERANCE:0.01
 HINT:Use product rule: f'g + fg'. If f=x^2 and g=x+1, then f'=2x and g'=1
 

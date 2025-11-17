@@ -16,11 +16,14 @@ D:x
 ANSWER:B
 HINT:Constants don't change, so their rate of change is zero!
 
-TYPE:NUM
-QUESTION:Find the derivative of f(x) = x^2
-ANSWER:2
-TOLERANCE:0.01
-HINT:Use the power rule: d/dx(x^n) = n*x^(n-1). What happens when n=2?
+TYPE:MC
+QUESTION:What is the derivative of f(x) = x^2
+A:2
+B:0
+C:x
+D:2x
+ANSWER:D
+HINT:Use the power rule: d/dx(x^n) = n*x^(n-1).
 
 TYPE:MC
 QUESTION:What is the power rule for derivatives?

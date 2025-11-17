@@ -18,13 +18,13 @@ void clear_screen() {
 
 void print_welcome() {
     printf("\n");
-    printf("╔═════════════════════════════════════════════════════════╗\n");
-    printf("║                                                         ║\n");
-    printf("║          WELCOME TO CALCULUS 1 LEARNING SYSTEM          ║\n");
-    printf("║                                                         ║\n");
-    printf("╚═════════════════════════════════════════════════════════╝\n");
+    printf("===========================================================\n");
+    printf("=                                                         =\n");
+    printf("=          WELCOME TO CALCULUS 1 LEARNING SYSTEM          =\n");
+    printf("=                                                         =\n");
+    printf("===========================================================\n");
     printf("\n");
-    printf("📚 This program will help you learn Calculus 1 step by step!\n");
+    printf("This program will help you learn Calculus 1 step by step!\n");
     printf("\n");
     printf("How it works:\n");
     printf("  1. You'll start with a Beginner test (5 questions)\n");
@@ -34,9 +34,9 @@ void print_welcome() {
     printf("  5. Complete all 3 levels to finish!\n");
     printf("\n");
     printf("Passing criteria:\n");
-    printf("  • Beginner: 5/5 (100%%)\n");
-    printf("  • Intermediate: 4/5 (80%%)\n");
-    printf("  • Advanced: 3/5 (60%%)\n");
+    printf("  - Beginner: 5/5 (100%%)\n");
+    printf("  - Intermediate: 4/5 (80%%)\n");
+    printf("  - Advanced: 3/5 (60%%)\n");
     printf("\n");
     printf("Press ENTER to begin...");
     getchar();
@@ -44,18 +44,18 @@ void print_welcome() {
 
 void print_congratulations() {
     printf("\n");
-    printf("╔═════════════════════════════════════════════════════════╗\n");
-    printf("║                                                         ║\n");
-    printf("║              🎉 CONGRATULATIONS! 🎉                     ║\n");
-    printf("║                                                         ║\n");
-    printf("║      You have completed all levels of Calculus 1!      ║\n");
-    printf("║                                                         ║\n");
-    printf("╚═════════════════════════════════════════════════════════╝\n");
+    printf("===========================================================\n");
+    printf("=                                                         =\n");
+    printf("=                    CONGRATULATIONS!                     =\n");
+    printf("=                                                         =\n");
+    printf("=      You have completed all levels of Calculus 1!       =\n");
+    printf("=                                                         =\n");
+    printf("===========================================================\n");
     printf("\n");
     printf("You've mastered:\n");
-    printf("  ✓ Beginner concepts\n");
-    printf("  ✓ Intermediate techniques\n");
-    printf("  ✓ Advanced applications\n");
+    printf("-- Beginner concepts\n");
+    printf("-- Intermediate techniques\n");
+    printf("-- Advanced applications\n");
     printf("\n");
     printf("Keep practicing and good luck with your studies!\n");
     printf("\n");
@@ -82,7 +82,7 @@ int handle_level(StudentProgress* progress) {
         
         // Check if passed
         if (check_pass(score, num_questions, progress->current_level)) {
-            printf("\n🎉 Congratulations! You passed the %s level!\n", 
+            printf("\nCongratulations! You passed the %s level!\n", 
                    get_level_name(progress->current_level));
             return 1; // Passed
         }
@@ -96,7 +96,7 @@ int handle_level(StudentProgress* progress) {
         
         if (progress->retry_count >= 2) {
             // After 2 failures, enable hint mode
-            printf("\n💡 Don't worry! We'll help you with hints from now on.\n");
+            printf("\nDon't worry! We'll help you with hints from now on.\n");
             progress->hint_mode = 1;
             
             printf("Let's review the teaching material first.\n");
@@ -156,9 +156,9 @@ int main() {
         progress.hint_mode = 0;
         
         printf("\n");
-        printf("═══════════════════════════════════════════════════════\n");
+        printf("===================================================\n");
         printf("           Starting %s Level\n", get_level_name(level));
-        printf("═══════════════════════════════════════════════════════\n");
+        printf("===================================================\n");
         printf("Press ENTER to begin the test...");
         getchar();
         

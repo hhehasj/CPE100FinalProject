@@ -1,6 +1,6 @@
 TYPE:NUM
 QUESTION:Find the derivative of f(x) = sin(x^2) at x=π/2. Round to 2 decimal places.
-ANSWER:3.14
+ANSWER:-3.01
 TOLERANCE:0.05
 HINT:Chain rule: f'(x) = cos(x^2) * 2x. At x=π/2, this is cos((π/2)^2) * π
 

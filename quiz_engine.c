@@ -25,7 +25,7 @@ int ask_question(Question* q, int show_hint) {
         printf("D: %s\n", q->data.mc.options[3]);
         
         if (show_hint) {
-            printf("\n💡 HINT: %s\n", q->data.mc.hint);
+            printf("\nHINT: %s\n", q->data.mc.hint);
         }
         
         char answer;
@@ -39,7 +39,7 @@ int ask_question(Question* q, int show_hint) {
         printf("(Please round your answer to 2 decimal places)\n");
         
         if (show_hint) {
-            printf("\n💡 HINT: %s\n", q->data.num.hint);
+            printf("\nHINT: %s\n", q->data.num.hint);
         }
         
         double answer;
@@ -54,9 +54,9 @@ int run_quiz(Question questions[], int num_questions, StudentProgress* progress)
     int score = 0;
     
     printf("\n");
-    printf("═══════════════════════════════════════════════════════\n");
+    printf("===================================================\n");
     printf("                    QUIZ TIME!\n");
-    printf("═══════════════════════════════════════════════════════\n");
+    printf("===================================================\n");
     printf("You will answer %d questions.\n", num_questions);
     
     // Show passing criteria based on level
@@ -73,10 +73,10 @@ int run_quiz(Question questions[], int num_questions, StudentProgress* progress)
     }
     
     if (progress->hint_mode) {
-        printf("🌟 HINT MODE ACTIVATED - Hints will be shown for each question\n");
+        printf("HINT MODE ACTIVATED - Hints will be shown for each question\n");
     }
     
-    printf("═══════════════════════════════════════════════════════\n");
+    printf("===================================================\n");
 
     for (int i = 0; i < num_questions; i++) {
         printf("\n--- Question %d of %d ---\n", i + 1, num_questions);
@@ -84,10 +84,10 @@ int run_quiz(Question questions[], int num_questions, StudentProgress* progress)
         int correct = ask_question(&questions[i], progress->hint_mode);
         
         if (correct) {
-            printf("✓ Correct!\n");
+            printf("Correct!!\n");
             score++;
         } else {
-            printf("✗ Incorrect.\n");
+            printf("Incorrect.\n");
             if (!progress->hint_mode) {
                 // Show correct answer
                 if (questions[i].type == MULTIPLE_CHOICE) {
@@ -100,11 +100,11 @@ int run_quiz(Question questions[], int num_questions, StudentProgress* progress)
     }
 
     printf("\n");
-    printf("═══════════════════════════════════════════════════════\n");
+    printf("===================================================\n");
     printf("                  QUIZ RESULTS\n");
-    printf("═══════════════════════════════════════════════════════\n");
+    printf("===================================================\n");
     printf("Your score: %d/%d\n", score, num_questions);
-    printf("═══════════════════════════════════════════════════════\n");
+    printf("===================================================\n");
 
     return score;
 }

@@ -11,6 +11,10 @@ int validate_mc_answer(char user_answer, char correct_answer) {
 int validate_num_answer(double user_answer, double correct_answer, double tolerance) {
     return fabs(user_answer - correct_answer) <= tolerance;
 }
+void clear_buffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) { }
+}
 
 int ask_question(Question* q, int show_hint) {
     if (q->type == MULTIPLE_CHOICE) {
@@ -27,7 +31,7 @@ int ask_question(Question* q, int show_hint) {
         char answer;
         printf("\nYour answer (A/B/C/D): ");
         scanf(" %c", &answer);
-        
+        clear_buffer();
         return validate_mc_answer(answer, q->data.mc.correct_answer);
     }
     else { // NUMERICAL
@@ -41,7 +45,7 @@ int ask_question(Question* q, int show_hint) {
         double answer;
         printf("\nYour answer: ");
         scanf("%lf", &answer);
-        
+        clear_buffer();
         return validate_num_answer(answer, q->data.num.correct_answer, q->data.num.tolerance);
     }
 }

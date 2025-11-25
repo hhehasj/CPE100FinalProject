@@ -119,10 +119,20 @@ int handle_level(StudentProgress* progress) {
             printf("\nWould you like to:\n");
             printf("  1. Review teaching material\n");
             printf("  2. Retry the test immediately\n");
-            printf("\nYour choice (1 or 2): ");
             
             int choice;
-            scanf("%d", &choice);
+            int valid_input = 0;
+            while(!valid_input) {
+                printf("\nYour choice (1 or 2): ");
+                scanf("%d", &choice);
+                 
+                if ( choice == 1 || choice == 2 ) {
+                    valid_input = 1;
+                } else {
+                    printf("Inavlid input! Please enter 1 or 2.\n");
+                    clear_buffer();
+                }
+            }
             
             if (choice == 1) {
                 int num_sections = load_teaching_content(teaching_file, teaching, 10);

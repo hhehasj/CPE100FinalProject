@@ -5,7 +5,7 @@
 #include "quiz_engine.h"
 
 int validate_mc_answer(char user_answer, char correct_answer) {
-    return toupper(user_answer) == toupper(correct_answer);
+    return user_answer == toupper(correct_answer);
 }
 
 int validate_num_answer(double user_answer, double correct_answer, double tolerance) {
@@ -27,11 +27,21 @@ int ask_question(Question* q, int show_hint) {
         if (show_hint) {
             printf("\nHINT: %s\n", q->data.mc.hint);
         }
-        
+
         char answer;
-        printf("\nYour answer (A/B/C/D): ");
-        scanf(" %c", &answer);
-        clear_buffer();
+        int valid_input = 0;
+        while ( !valid_input ) {
+            printf("\nYour answer (A/B/C/D): ");
+            scanf(" %c", &answer);
+            clear_buffer();
+
+            char upper_answer = toupper(answer);
+            if ( upper_answer == 'A' || upper_answer == 'B' || upper_answer == 'C' || upper_answer == 'D' ) {
+                valid_input = 1;
+            } else {
+                printf("Invalid input! Please enter A, B, C, or D.\n");
+            }
+        }
         return validate_mc_answer(answer, q->data.mc.correct_answer);
     }
     else { // NUMERICAL

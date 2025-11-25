@@ -15,4 +15,8 @@ int validate_mc_answer(char user_answer, char correct_answer);
 // Validate numerical answer with tolerance
 int validate_num_answer(double user_answer, double correct_answer, double tolerance);
 
+// scanf() doesn't clear the buffer so a character exists in the buffer
+// when it shouldn't. clear_buffer() removes the character that exists.
+void clear_buffer();
+
 #endif

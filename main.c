@@ -38,8 +38,22 @@ void print_welcome() {
     printf("  - Intermediate: 4/5 (80%%)\n");
     printf("  - Advanced: 3/5 (60%%)\n");
     printf("\n");
-    printf("Press ENTER to begin...");
-    getchar();
+
+    int valid = 0;
+    while (!valid) {
+        printf("Press ENTER to begin...");
+        
+        int c = getchar();
+        
+        if (c == '\n') {
+            valid = 1;
+
+        } else {
+            // User typed something before Enter - clear the rest and re-prompt
+            while ((c = getchar()) != '\n' && c != EOF);  // Clear the buffer
+            printf("Please press only ENTER (no other keys).\n\n");
+        }
+    }
 }
 
 void print_congratulations() {
@@ -100,8 +114,21 @@ int handle_level(StudentProgress* progress) {
             progress->hint_mode = 1;
             
             printf("Let's review the teaching material first.\n");
-            printf("Press ENTER to continue...");
-            getchar();
+            int valid1 = 0;
+            while (!valid1) {
+                printf("Press ENTER to continue...");
+                
+                int c = getchar();
+                
+                if (c == '\n') {
+                    valid1 = 1;
+
+                } else {
+                    // User typed something before Enter - clear the rest and re-prompt
+                    while ((c = getchar()) != '\n' && c != EOF);  // Clear the buffer
+                    printf("Please press only ENTER (no other keys).\n\n");
+                }
+            }
             getchar(); // Extra getchar for buffer
             
             // Load and display teaching content
@@ -111,8 +138,21 @@ int handle_level(StudentProgress* progress) {
             }
             
             printf("\nYou can now retry with hints enabled!\n");
-            printf("Press ENTER to retry the test...");
-            getchar();
+            int valid2 = 0;
+            while (!valid2) {
+                printf("Press ENTER to retry the test...");
+                
+                int c = getchar();
+                
+                if (c == '\n') {
+                    valid2 = 1;
+
+                } else {
+                    // User typed something before Enter - clear the rest and re-prompt
+                    while ((c = getchar()) != '\n' && c != EOF);  // Clear the buffer
+                    printf("Please press only ENTER (no other keys).\n\n");
+                }
+            }
             
         } else {
             // First failure - offer teaching
@@ -169,8 +209,21 @@ int main() {
         printf("===================================================\n");
         printf("           Starting %s Level\n", get_level_name(level));
         printf("===================================================\n");
-        printf("Press ENTER to begin the test...");
-        getchar();
+        int valid = 0;
+        while (!valid) {
+            printf("Press ENTER to begin the test...");
+            
+            int c = getchar();
+            
+            if (c == '\n') {
+                valid = 1;
+
+            } else {
+                // User typed something before Enter - clear the rest and re-prompt
+                while ((c = getchar()) != '\n' && c != EOF);  // Clear the buffer
+                printf("Please press only ENTER (no other keys).\n\n");
+            }
+        }
         
         int result = handle_level(&progress);
         

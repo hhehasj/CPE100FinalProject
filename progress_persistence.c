@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "progress_persistence.h"
+#include "level_rules.h"  // For get_level_name() function
 
 int progress_exists() {
     FILE* file = fopen(PROGRESS_FILE, "r");

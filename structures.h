@@ -52,8 +52,8 @@ typedef struct {
     int retry_count;  // 0, 1, or 2 (after 2, hints are shown)
     int total_questions;
     int hint_mode;  // 0 = no hints, 1 = hints shown after 2 failures
-    int used_questions[MAX_QUESTIONS];
-    int num_used;
+    int used_questions[MAX_QUESTIONS];  // For tracking which questions have been used
+    int num_used;                       // Number of questions already used
 } StudentProgress;
 
 // Teaching content structure

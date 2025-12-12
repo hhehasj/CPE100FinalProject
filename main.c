@@ -18,6 +18,10 @@ void clear_screen() {
     #endif
 }
 
+/* * A-STYLE VISUALS:
+ * Reverted to simple ASCII borders (=) and removed emojis.
+ * Removed the internal input loop because Code B's main() handles the pause.
+ */
 void print_welcome() {
     printf("\n");
     printf("===========================================================\n");
@@ -44,6 +48,9 @@ void print_welcome() {
     printf("\n");
 }
 
+/* * A-STYLE VISUALS:
+ * Reverted to simple ASCII borders (=) and removed emojis.
+ */
 void print_congratulations() {
     printf("\n");
     printf("===========================================================\n");
@@ -200,6 +207,11 @@ int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
         return -1;
     }
     
+    // Restore retry count and hint mode from saved progress
+    int level_index = progress->current_level;
+    progress->retry_count = saved_progress->retry_count[level_index];
+    progress->hint_mode = saved_progress->hint_mode[level_index];
+    
     while (1) {
         int num_selected;
         
@@ -230,6 +242,16 @@ int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
             saved_progress->best_score[level_index] = score;
         }
         
+        // Update best score
+        if (score > saved_progress->best_score[level_index]) {
+            saved_progress->best_score[level_index] = score;
+        }
+        
+        // Save progress after quiz (auto-save)
+        saved_progress->retry_count[level_index] = progress->retry_count;
+        saved_progress->hint_mode[level_index] = progress->hint_mode;
+        save_progress(saved_progress);
+        
         // Check if passed
         if (check_pass(score, questions_to_show, progress->current_level)) {
             printf("\nCongratulations! You passed the %s level!\n", 
@@ -259,6 +281,7 @@ int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
         
         if (progress->retry_count >= 2) {
             // After 2 failures, enable hint mode
+            // Replaced emoji with standard text
             printf("\nDon't worry! We'll help you with hints from now on.\n");
             printf("You'll also receive a new set of questions.\n");
             
@@ -285,6 +308,7 @@ int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
             printf("\nWould you like to:\n");
             printf("  1. Review teaching material\n");
             printf("  2. Retry the test immediately\n");
+            printf("\nYour choice (1 or 2): ");
             
             int choice;
             int valid_input = 0;
@@ -390,6 +414,9 @@ int main() {
         progress.hint_mode = saved_progress.hint_mode[level];
         progress.num_used = 0;  // Reset used questions for new level
         
+        progress.current_level = level;
+        
+        // Code A Style Header
         printf("\n");
         printf("===================================================\n");
         printf("           Starting %s Level\n", get_level_name(level));

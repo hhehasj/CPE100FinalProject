@@ -10,6 +10,7 @@ int get_passing_score(Level level) {
 }
 
 int check_pass(int score, int total, Level level) {
+    (void)total; // Mark as intentionally unused
     int required = get_passing_score(level);
     return score >= required;
 }

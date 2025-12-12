@@ -8,7 +8,10 @@ An interactive C-based learning application for Calculus 1 that guides students 
 - ✅ Multiple choice and numerical questions
 - ✅ 2-retry limit with hint system after failures
 - ✅ Step-by-step teaching materials
-- ✅ No data persistence (session-based only)
+- ✅ Automatic progress saving after each quiz**
+- ✅ Continue from where you left off**
+- ✅ View progress and best scores**
+- ✅ Reset all or individual level progress**
 - ✅ Skip option for teaching content
 
 ## File Structure
@@ -22,12 +25,14 @@ project/
 ├── quiz_engine.c/.h            # Quiz logic and validation
 ├── teaching_renderer.c/.h      # Teaching content display
 ├── level_rules.c/.h            # Level progression rules
+├── progress_persistence.c/.h   # Progress saving/loading (NEW)
 ├── questions_beginner.txt      # Beginner level questions
 ├── questions_intermediate.txt  # Intermediate level questions
 ├── questions_advanced.txt      # Advanced level questions
 ├── teaching_beginner.txt       # Beginner teaching content
 ├── teaching_intermediate.txt   # Intermediate teaching content
 ├── teaching_advanced.txt       # Advanced teaching content
+├── user_progress.txt           # Saved progress file (auto-generated)
 ├── Makefile                    # Build configuration
 └── README.md                   # This file
 ```
@@ -51,12 +56,12 @@ make rebuild
 
 ### Manual Compilation
 ```bash
-gcc main.c question_loader.c teaching_loader.c quiz_engine.c teaching_renderer.c level_rules.c -o CPE100FINALPROJECT -lm -Wall -std=c99
+gcc main.c question_loader.c teaching_loader.c quiz_engine.c teaching_renderer.c level_rules.c progress_persistence.c -o calculus_learning -lm -Wall -std=c99
 ```
 
 ## How to Run
 ```bash
-./CPE100FINALPROJECT
+./calculus_learning
 ```
 
 ## Passing Criteria
@@ -69,6 +74,36 @@ gcc main.c question_loader.c teaching_loader.c quiz_engine.c teaching_renderer.c
 2. If failed: Option to review teaching or retry immediately
 3. After 2 failures: Hints automatically enabled for all questions
 4. Unlimited retries available after hints are activated
+5. Progress is saved automatically after each quiz
+
+## Progress Saving System (NEW)
+
+### What Gets Saved:
+- Current level (Beginner/Intermediate/Advanced)
+- Retry count for each level
+- Completion status for each level
+- Best score achieved for each level
+- Hint mode status for each level
+
+### When Progress is Saved:
+- Automatically after completing each quiz
+- When hints are activated
+- When moving to the next level
+- When resetting progress
+
+### Main Menu Options:
+When you have saved progress, you'll see:
+1. **Continue** - Resume from where you left off
+2. **Start New** - Reset all progress and start fresh
+3. **View Progress** - See your scores and completion status
+4. **Reset Progress** - Reset all levels or individual levels
+5. **Exit** - Quit the program
+
+### Reset Options:
+- Reset Beginner level only
+- Reset Intermediate level only
+- Reset Advanced level only
+- Reset ALL progress (complete restart)
 
 ## Question File Format
 
@@ -148,9 +183,11 @@ To test if everything works:
 ## Future Enhancements (Optional)
 - Add more questions per level
 - Add timer functionality
-- Add scoring statistics
+- Multiple user accounts with usernames
+- Export progress reports
 - Add more calculus topics (integration, limits, etc.)
 - Add difficulty scaling within levels
+- Cloud sync for progress
 
 ## Team Members
 [Add your team member names here]

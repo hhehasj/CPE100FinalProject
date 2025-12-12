@@ -24,7 +24,7 @@ typedef enum {
 typedef struct {
     char question[MAX_QUESTION_LENGTH];
     char options[4][MAX_OPTION_LENGTH];  // A, B, C, D
-    char correct_answer;  // 'A', 'B', 'C', or 'D'
+    char correct_answer;  
     char hint[MAX_HINT_LENGTH];
 } MCQuestion;
 
@@ -49,7 +49,7 @@ typedef struct {
 typedef struct {
     Level current_level;
     int current_score;
-    int retry_count;  // 0, 1, or 2 (after 2, hints are shown)
+    int retry_count;  
     int total_questions;
     int hint_mode;  // 0 = no hints, 1 = hints shown after 2 failures
     int used_questions[MAX_QUESTIONS];  // For tracking which questions have been used

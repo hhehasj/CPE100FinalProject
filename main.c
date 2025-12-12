@@ -10,6 +10,7 @@
 #include "level_rules.h"
 #include "progress_persistence.h"
 
+
 void clear_screen() {
     #ifdef _WIN32
         system("cls");
@@ -18,10 +19,7 @@ void clear_screen() {
     #endif
 }
 
-/* * A-STYLE VISUALS:
- * Reverted to simple ASCII borders (=) and removed emojis.
- * Removed the internal input loop because Code B's main() handles the pause.
- */
+
 void print_welcome() {
     printf("\n");
     printf("===========================================================\n");
@@ -48,9 +46,7 @@ void print_welcome() {
     printf("\n");
 }
 
-/* * A-STYLE VISUALS:
- * Reverted to simple ASCII borders (=) and removed emojis.
- */
+
 void print_congratulations() {
     printf("\n");
     printf("===========================================================\n");
@@ -70,6 +66,7 @@ void print_congratulations() {
     printf("\n");
 }
 
+
 void show_progress_status(SavedProgress* saved_progress) {
     printf("\n");
     printf("=======================================================\n");
@@ -83,17 +80,22 @@ void show_progress_status(SavedProgress* saved_progress) {
         
         if (saved_progress->level_completed[i]) {
             printf("[X] COMPLETED (Best: %d/5)\n", saved_progress->best_score[i]);
+
         } else if (saved_progress->retry_count[i] > 0) {
             printf("In Progress (Attempts: %d, Best: %d/5)\n", 
                    saved_progress->retry_count[i], 
                    saved_progress->best_score[i]);
+
         } else {
             printf("Not Started\n");
+
         }
     }
     
     printf("=======================================================\n");
+
 }
+
 
 void show_reset_menu(SavedProgress* saved_progress) {
     printf("\n");
@@ -115,33 +117,43 @@ void show_reset_menu(SavedProgress* saved_progress) {
         case 1:
             reset_level_progress(saved_progress, BEGINNER);
             break;
+
         case 2:
             reset_level_progress(saved_progress, INTERMEDIATE);
             break;
+
         case 3:
             reset_level_progress(saved_progress, ADVANCED);
             break;
+
         case 4:
             printf("\nAre you sure? This will delete ALL progress! (y/n): ");
+
             char confirm;
             scanf(" %c", &confirm);
             if (confirm == 'y' || confirm == 'Y') {
                 reset_all_progress(saved_progress);
+
             } else {
                 printf("Reset cancelled.\n");
+
             }
             break;
+
         case 5:
             printf("Cancelled.\n");
             break;
+
         default:
             printf("Invalid choice.\n");
+
     }
     
     printf("Press ENTER to continue...");
     getchar();
     getchar();
 }
+
 
 int show_start_menu(SavedProgress* saved_progress) {
     printf("\n");
@@ -161,8 +173,10 @@ int show_start_menu(SavedProgress* saved_progress) {
     getchar(); // Clear buffer
     
     switch(choice) {
+
         case 1:
             return 1; // Continue
+
         case 2:
             printf("\nAre you sure? Current progress will be lost! (y/n): ");
             char confirm;
@@ -173,20 +187,26 @@ int show_start_menu(SavedProgress* saved_progress) {
                 return 1; // Start new
             }
             return show_start_menu(saved_progress); // Ask again
+
         case 3:
             show_progress_status(saved_progress);
             printf("Press ENTER to continue...");
             getchar();
             return show_start_menu(saved_progress); // Back to menu
+
         case 4:
             show_reset_menu(saved_progress);
             return show_start_menu(saved_progress); // Back to menu
+
         case 5:
             return 0; // Exit
+
         default:
             printf("Invalid choice. Please try again.\n");
             return show_start_menu(saved_progress);
+
     }
+
 }
 
 int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
@@ -215,17 +235,18 @@ int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
     while (1) {
         int num_selected;
         
-        // Use first 5 questions until user has retried twice, then use random selection
         if (progress->retry_count < 2) {
-            // Use first questions
+            // Use first 5 questions
             num_selected = (total_questions >= questions_to_show) ? questions_to_show : total_questions;
             for (int i = 0; i < num_selected; i++) {
                 selected_questions[i] = all_questions[i];
             }
+
         } else {
             // After 2 retries, use random selection
             num_selected = select_random_questions(all_questions, total_questions, 
                                                    selected_questions, questions_to_show, progress);
+
         }
         
         if (num_selected == 0) {
@@ -233,7 +254,6 @@ int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
             return -1;
         }
         
-        // Run the quiz
         int score = run_quiz(selected_questions, questions_to_show, progress);
         
         // Update best score in saved progress
@@ -281,7 +301,6 @@ int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
         
         if (progress->retry_count >= 2) {
             // After 2 failures, enable hint mode
-            // Replaced emoji with standard text
             printf("\nDon't worry! We'll help you with hints from now on.\n");
             printf("You'll also receive a new set of questions.\n");
             
@@ -293,7 +312,6 @@ int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
             getchar();
             getchar();
             
-            // Load and display teaching content
             int num_sections = load_teaching_content(teaching_file, teaching, 10);
             if (num_sections > 0) {
                 display_teaching_content(teaching, num_sections, progress->current_level);
@@ -327,15 +345,18 @@ int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
             }
             
             if (choice == 1) {
+
                 int num_sections = load_teaching_content(teaching_file, teaching, 10);
                 if (num_sections > 0) {
                     display_teaching_content(teaching, num_sections, progress->current_level);
                 }
+
             }
             
             printf("\nPress ENTER to retry the test...");
             getchar();
             getchar();
+
         }
         
         // Save progress before retrying
@@ -343,7 +364,9 @@ int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
     }
 }
 
+
 int main() {
+
     // Seed random number generator
     srand(time(NULL));
     
@@ -361,9 +384,11 @@ int main() {
             printf("\nGoodbye!\n");
             return 0;
         }
+
     } else {
         // No saved progress - initialize new
         reset_all_progress(&saved_progress);
+
     }
     
     StudentProgress progress = {
@@ -374,20 +399,26 @@ int main() {
         .hint_mode = 0,
         .num_used = 0
     };
+
     
     print_welcome();
     
+
     // Wait for user to press ENTER
     int valid = 0;
     while (!valid) {
         printf("Press ENTER to begin...");
+
         int c = getchar();
         if (c == '\n') {
             valid = 1;
+
         } else {
             while ((c = getchar()) != '\n' && c != EOF);
             printf("Please press only ENTER (no other keys).\n\n");
+
         }
+
     }
     
     // Check if all levels are already completed
@@ -398,6 +429,7 @@ int main() {
         printf("\nYou've already completed all levels!\n");
         printf("You can reset progress from the main menu to try again.\n");
         return 0;
+
     }
     
     // Process each level starting from current level
@@ -416,7 +448,6 @@ int main() {
         
         progress.current_level = level;
         
-        // Code A Style Header
         printf("\n");
         printf("===================================================\n");
         printf("           Starting %s Level\n", get_level_name(level));

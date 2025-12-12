@@ -4,22 +4,26 @@
 #include <math.h>
 #include "quiz_engine.h"
 
+
 void clear_buffer() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF) { }
 }
 
+
 int validate_mc_answer(char user_answer, char correct_answer) {
     return toupper(user_answer) == toupper(correct_answer);
 }
+
 
 int validate_num_answer(double user_answer, double correct_answer, double tolerance) {
     return fabs(user_answer - correct_answer) <= tolerance;
 }
 
+
 int ask_question(Question* q, int show_hint) {
     if (q->type == MULTIPLE_CHOICE) {
-        // A-STYLE: Standard formatting
+
         printf("\n%s\n", q->data.mc.question);
         printf("A: %s\n", q->data.mc.options[0]);
         printf("B: %s\n", q->data.mc.options[1]);
@@ -27,14 +31,13 @@ int ask_question(Question* q, int show_hint) {
         printf("D: %s\n", q->data.mc.options[3]);
         
         if (show_hint) {
-            // A-STYLE: No emoji
             printf("\nHINT: %s\n", q->data.mc.hint);
         }
 
         char answer;
         int valid_input = 0;
         
-        // A-STYLE: Robust input loop (safer than B's simple scanf)
+
         while ( !valid_input ) {
             printf("\nYour answer (A/B/C/D): ");
             scanf(" %c", &answer);
@@ -43,9 +46,12 @@ int ask_question(Question* q, int show_hint) {
             char upper_answer = toupper(answer);
             if ( upper_answer == 'A' || upper_answer == 'B' || upper_answer == 'C' || upper_answer == 'D' ) {
                 valid_input = 1;
+
             } else {
+
                 printf("Invalid input! Please enter A, B, C, or D.\n");
             }
+
         }
         return validate_mc_answer(toupper(answer), q->data.mc.correct_answer);
     }
@@ -68,7 +74,6 @@ int ask_question(Question* q, int show_hint) {
 int run_quiz(Question questions[], int num_questions, StudentProgress* progress) {
     int score = 0;
     
-    // A-STYLE: Standard borders
     printf("\n");
     printf("===================================================\n");
     printf("                     QUIZ TIME!\n");
@@ -92,7 +97,6 @@ int run_quiz(Question questions[], int num_questions, StudentProgress* progress)
         printf("HINT MODE ACTIVATED - Hints will be shown for each question\n");
     }
     
-    // B-LOGIC: Inform user about saving, but use A-STYLE formatting
     printf("Note: Progress auto-saves after each question.\n");
     printf("===================================================\n");
 
@@ -102,11 +106,11 @@ int run_quiz(Question questions[], int num_questions, StudentProgress* progress)
         int correct = ask_question(&questions[i], progress->hint_mode);
         
         if (correct) {
-            // A-STYLE text
             printf("Correct!!\n");
             score++;
+
         } else {
-            // A-STYLE text
+
             printf("Incorrect.\n");
             if (!progress->hint_mode) {
                 // Show correct answer
@@ -118,11 +122,9 @@ int run_quiz(Question questions[], int num_questions, StudentProgress* progress)
             }
         }
         
-        // B-LOGIC: Update score in the struct immediately for auto-save
         progress->current_score = score;
     }
 
-    // A-STYLE: Standard borders
     printf("\n");
     printf("===================================================\n");
     printf("                   QUIZ RESULTS\n");

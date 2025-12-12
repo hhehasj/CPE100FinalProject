@@ -17,11 +17,29 @@ ANSWER:B
 HINT:Constants don't change, so their rate of change is zero!
 
 TYPE:MC
-QUESTION:What is the derivative of f(x) = x^2
+QUESTION:What is the derivative of a constant (like f(x) = 10)?
+A:-1
+B:1
+C:0
+D:x
+ANSWER:C
+HINT:Constants don't change, so their rate of change is zero!
+
+TYPE:MC
+QUESTION:What is the derivative of f(x) = x^2?
 A:2
 B:0
 C:x
 D:2x
+ANSWER:D
+HINT:Use the power rule: d/dx(x^n) = n*x^(n-1).
+
+TYPE:MC
+QUESTION:What is the derivative of f(x) = x^5?
+A:5
+B:0
+C:x^4
+D:5x^4
 ANSWER:D
 HINT:Use the power rule: d/dx(x^n) = n*x^(n-1).
 
@@ -39,3 +57,63 @@ QUESTION:Find the derivative of f(x) = 3x
 ANSWER:3
 TOLERANCE:0.01
 HINT:The derivative of x is 1, and the constant 3 stays. So 3*1 = ?
+
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = 20x
+ANSWER:20
+TOLERANCE:0.01
+HINT:The derivative of x is 1, and the constant 20 stays. So 20*1 = ?
+
+TYPE:MC
+QUESTION:What is the derivative of f(x) = x?
+A:0
+B:1
+C:x
+D:2
+ANSWER:B
+HINT:This is the simplest power rule case where n=1. Bring down 1, subtract 1 from exponent: 1*x^0 = 1.
+
+TYPE:MC
+QUESTION:What is the derivative of f(x) = x^3?
+A:3x
+B:x^2
+C:3x^2
+D:x^3
+ANSWER:C
+HINT:Use the power rule: d/dx(x^n) = n*x^(n-1).
+
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = 7x
+ANSWER:7
+TOLERANCE:0.01
+HINT:The derivative of kx is always k. What's the coefficient?
+
+TYPE:MC
+QUESTION:What is the derivative of f(x) = 4x^2?
+A:4x
+B:8x
+C:4x^2
+D:8
+ANSWER:B
+HINT:Multiply the coefficient (4) by the exponent (2), then reduce exponent by 1.
+
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = x^2 at x = 3. Round to 2 decimal places.
+ANSWER:6
+TOLERANCE:0.01
+HINT:First find f'(x) = 2x, then substitute x = 3.
+
+TYPE:MC
+QUESTION:If f(x) = 2x^3, what is f'(x)?
+A:2x^2
+B:6x^2
+C:6x
+D:2x^3
+ANSWER:B
+HINT:Use the power rule: d/dx(x^n) = n*x^(n-1). Multiply coefficient by exponent (2*3=6), reduce exponent by 1.
+
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = x^4 at x = 1. Round to 2 decimal places.
+ANSWER:4
+TOLERANCE:0.01
+HINT:f'(x) = 4x^3. When x = 1, what is 4(1)^3?

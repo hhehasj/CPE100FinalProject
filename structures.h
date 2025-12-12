@@ -5,7 +5,7 @@
 #define MAX_OPTION_LENGTH 200
 #define MAX_ANSWER_LENGTH 100
 #define MAX_HINT_LENGTH 300
-#define MAX_QUESTIONS 10
+#define MAX_QUESTIONS 20
 
 // Question types
 typedef enum {
@@ -52,6 +52,8 @@ typedef struct {
     int retry_count;  // 0, 1, or 2 (after 2, hints are shown)
     int total_questions;
     int hint_mode;  // 0 = no hints, 1 = hints shown after 2 failures
+    int used_questions[MAX_QUESTIONS];
+    int num_used;
 } StudentProgress;
 
 // Teaching content structure

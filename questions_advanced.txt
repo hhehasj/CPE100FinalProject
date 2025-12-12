@@ -33,3 +33,78 @@ QUESTION:Find dy/dx using implicit differentiation: x^2 + y^2 = 25, at point (3,
 ANSWER:-0.75
 TOLERANCE:0.01
 HINT:Differentiate both sides: 2x + 2y(dy/dx) = 0. Solve for dy/dx = -x/y. At (3,4): -3/4 = ?
+
+TYPE:MC
+QUESTION:Using the quotient rule, what is the derivative of f(x) = x/(x+1)?
+A:1/(x+1)^2
+B:1/(x+1)
+C:-1/(x+1)^2
+D:x/(x+1)^2
+ANSWER:A
+HINT:Quotient rule: [(1)(x+1) - (x)(1)] / (x+1)^2 = 1/(x+1)^2
+
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = x*e^x at x=1. Round to 2 decimal places.
+ANSWER:5.44
+TOLERANCE:0.05
+HINT:Product rule: f'(x) = e^x + x*e^x. At x=1: e + e = 2e ≈ 5.44
+
+TYPE:MC
+QUESTION:What is the second derivative of f(x) = x^4?
+A:4x^3
+B:12x^2
+C:24x
+D:12x
+ANSWER:B
+HINT:First derivative is 4x^3. Take derivative again: 12x^2
+
+TYPE:NUM
+QUESTION:Find dy/dx if y = cos(3x) at x=0. Round to 2 decimal places.
+ANSWER:0
+TOLERANCE:0.01
+HINT:Chain rule: dy/dx = -sin(3x) * 3. At x=0, sin(0) = 0, so -3*0 = ?
+
+TYPE:MC
+QUESTION:What is the derivative of f(x) = tan(x)?
+A:sec^2(x)
+B:sec(x)tan(x)
+C:cos^2(x)
+D:-sec^2(x)
+ANSWER:A
+HINT:The derivative of tangent is secant squared!
+
+TYPE:NUM
+QUESTION:Find f'(2) if f(x) = (x^2 + 1)/(x - 1). Round to 2 decimal places.
+ANSWER:3
+TOLERANCE:0.01
+HINT:Quotient rule: f'(x) = [(2x)(x-1) - (x^2+1)(1)]/(x-1)^2. At x=2: [4-5]/1 = ?. Wait, recalculate: [4(1)-5]/1 = 3
+
+TYPE:MC
+QUESTION:What is the derivative of f(x) = ln(x^2)?
+A:2/x
+B:1/x^2
+C:2x
+D:1/(2x)
+ANSWER:A
+HINT:Chain rule: derivative of ln(u) is (1/u)*u'. Here u=x^2, so (1/x^2)*2x = 2/x
+
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = e^(x^2) at x=1. Round to 2 decimal places.
+ANSWER:5.44
+TOLERANCE:0.05
+HINT:Chain rule: f'(x) = e^(x^2) * 2x. At x=1: e^1 * 2 = 2e ≈ 5.44
+
+TYPE:MC
+QUESTION:Using implicit differentiation, find dy/dx for x^3 + y^3 = 6xy:
+A:-y^2/x^2
+B:(y^2 - x^2)/(y^2 - x^2)
+C:(2y - x^2)/(y^2 - 2x)
+D:(x^2 - 2y)/(2x - y^2)
+ANSWER:C
+HINT:Differentiate: 3x^2 + 3y^2(dy/dx) = 6y + 6x(dy/dx). Solve for dy/dx.
+
+TYPE:NUM
+QUESTION:Find the derivative of f(x) = sin(x)cos(x) at x=π/4. Round to 2 decimal places.
+ANSWER:0
+TOLERANCE:0.01
+HINT:Product rule: f'(x) = cos(x)cos(x) + sin(x)(-sin(x)) = cos^2(x) - sin^2(x). At x=π/4, cos and sin are equal, so difference is 0.

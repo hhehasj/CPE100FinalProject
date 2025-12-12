@@ -42,7 +42,7 @@ int ask_question(Question* q, int show_hint) {
                 printf("Invalid input! Please enter A, B, C, or D.\n");
             }
         }
-        return validate_mc_answer(answer, q->data.mc.correct_answer);
+        return validate_mc_answer(toupper(answer), q->data.mc.correct_answer);
     }
     else { // NUMERICAL
         printf("\n%s\n", q->data.num.question);

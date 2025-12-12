@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 #include "question_loader.h"
 
 const char* get_question_filename(Level level) {
@@ -89,4 +90,66 @@ int load_questions(const char* filename, Question questions[], int max_questions
 
     fclose(file);
     return count;
+}
+
+// Fisher-Yates shuffle algorithm
+void shuffle_array(int* array, int n) {
+    for (int i = n - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+int select_random_questions(Question all_questions[], int total_questions, 
+                           Question selected_questions[], int num_to_select,
+                           StudentProgress* progress) {
+    // If we don't have enough questions, return error
+    if (total_questions < num_to_select) {
+        printf("Warning: Not enough questions in pool (%d available, %d needed)\n", 
+               total_questions, num_to_select);
+        return 0;
+    }
+    
+    // Create array of available question indices
+    int available[MAX_QUESTIONS];
+    int num_available = 0;
+    
+    for (int i = 0; i < total_questions; i++) {
+        int is_used = 0;
+        for (int j = 0; j < progress->num_used; j++) {
+            if (progress->used_questions[j] == i) {
+                is_used = 1;
+                break;
+            }
+        }
+        if (!is_used) {
+            available[num_available++] = i;
+        }
+    }
+    
+    // If we've used all questions, reset the pool
+    if (num_available < num_to_select) {
+        printf("\nYou've seen all available questions! Resetting question pool...\n");
+        num_available = 0;
+        for (int i = 0; i < total_questions; i++) {
+            available[num_available++] = i;
+        }
+        progress->num_used = 0;
+    }
+    
+    // Shuffle available questions
+    shuffle_array(available, num_available);
+    
+    // Select first num_to_select questions
+    for (int i = 0; i < num_to_select; i++) {
+        int selected_index = available[i];
+        selected_questions[i] = all_questions[selected_index];
+        
+        // Mark as used
+        progress->used_questions[progress->num_used++] = selected_index;
+    }
+    
+    return num_to_select;
 }

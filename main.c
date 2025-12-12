@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "structures.h"
 #include "question_loader.h"
 #include "teaching_loader.h"
@@ -76,26 +77,38 @@ void print_congratulations() {
 }
 
 int handle_level(StudentProgress* progress) {
-    Question questions[MAX_QUESTIONS];
+    Question all_questions[MAX_QUESTIONS];
+    int questions_to_show = 5;
+    Question selected_questions[questions_to_show];
     TeachingSection teaching[10];
     
     const char* question_file = get_question_filename(progress->current_level);
     const char* teaching_file = get_teaching_filename(progress->current_level);
+
+    // Load all available questions
+    int total_questions = load_questions(question_file, all_questions, MAX_QUESTIONS);
     
-    int num_questions = load_questions(question_file, questions, 5);
-    
-    if (num_questions == 0) {
+    if (total_questions == 0) {
         printf("Error: Could not load questions for %s level.\n", 
                get_level_name(progress->current_level));
         return -1;
     }
+
+    printf("Loaded %d questions for this level.\n", total_questions);
     
     while (1) {
-        // Run the quiz
-        int score = run_quiz(questions, num_questions, progress);
+
+        int num_selected = select_random_questions(all_questions, total_questions, selected_questions, questions_to_show, progress);
+        
+        if ( num_selected == 0 ) {
+            printf("Error: Could not select questions.\n");
+            return -1;
+        }
+
+        int score = run_quiz(selected_questions, questions_to_show, progress);
         
         // Check if passed
-        if (check_pass(score, num_questions, progress->current_level)) {
+        if (check_pass(score, questions_to_show, progress->current_level)) {
             printf("\nCongratulations! You passed the %s level!\n", 
                    get_level_name(progress->current_level));
             return 1; // Passed
@@ -106,7 +119,7 @@ int handle_level(StudentProgress* progress) {
         
         printf("\n");
         printf("You need %d/%d to pass this level.\n", 
-               get_passing_score(progress->current_level), num_questions);
+               get_passing_score(progress->current_level), questions_to_show);
         
         if (progress->retry_count >= 2) {
             // After 2 failures, enable hint mode
@@ -124,7 +137,6 @@ int handle_level(StudentProgress* progress) {
                     valid1 = 1;
 
                 } else {
-                    // User typed something before Enter - clear the rest and re-prompt
                     while ((c = getchar()) != '\n' && c != EOF);  // Clear the buffer
                     printf("Please press only ENTER (no other keys).\n\n");
                 }
@@ -148,14 +160,12 @@ int handle_level(StudentProgress* progress) {
                     valid2 = 1;
 
                 } else {
-                    // User typed something before Enter - clear the rest and re-prompt
                     while ((c = getchar()) != '\n' && c != EOF);  // Clear the buffer
                     printf("Please press only ENTER (no other keys).\n\n");
                 }
             }
             
         } else {
-            // First failure - offer teaching
             printf("\nWould you like to:\n");
             printf("  1. Review teaching material\n");
             printf("  2. Retry the test immediately\n");
@@ -189,12 +199,16 @@ int handle_level(StudentProgress* progress) {
 }
 
 int main() {
+    // Seed random number generator
+    srand(time(NULL));
+
     StudentProgress progress = {
         .current_level = BEGINNER,
         .current_score = 0,
         .retry_count = 0,
         .total_questions = 5,
-        .hint_mode = 0
+        .hint_mode = 0,
+        .num_used = 0
     };
     
     print_welcome();
@@ -204,6 +218,7 @@ int main() {
         progress.current_level = level;
         progress.retry_count = 0;
         progress.hint_mode = 0;
+        progress.num_used = 0;
         
         printf("\n");
         printf("===================================================\n");

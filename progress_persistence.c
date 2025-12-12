@@ -101,11 +101,7 @@ void reset_all_progress(SavedProgress* progress) {
     
     // Save the reset progress
     save_progress(progress);
-<<<<<<< HEAD
     printf("\nAll progress has been reset!\n");
-=======
-    printf("\n✓ All progress has been reset!\n");
->>>>>>> master
 }
 
 void reset_level_progress(SavedProgress* progress, Level level) {
@@ -121,9 +117,5 @@ void reset_level_progress(SavedProgress* progress, Level level) {
     
     // Save the updated progress
     save_progress(progress);
-<<<<<<< HEAD
     printf("\nProgress for %s level has been reset!\n", get_level_name(level));
-=======
-    printf("\n✓ Progress for %s level has been reset!\n", get_level_name(level));
->>>>>>> master
 }

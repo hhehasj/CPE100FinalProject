@@ -6,10 +6,18 @@
 
 const char* get_question_filename(Level level) {
     switch(level) {
-        case BEGINNER: return "questions_beginner.txt";
-        case INTERMEDIATE: return "questions_intermediate.txt";
-        case ADVANCED: return "questions_advanced.txt";
-        default: return NULL;
+        case BEGINNER: 
+            return "questions_beginner.txt";
+
+        case INTERMEDIATE: 
+            return "questions_intermediate.txt";
+
+        case ADVANCED: 
+            return "questions_advanced.txt";
+
+        default: 
+            return NULL;
+
     }
 }
 
@@ -33,6 +41,7 @@ int load_questions(const char* filename, Question questions[], int max_questions
 
         // Read question type
         if (sscanf(line, "TYPE:%s", type) == 1) {
+
             if (strcmp(type, "MC") == 0) {
                 questions[count].type = MULTIPLE_CHOICE;
                 
@@ -105,7 +114,7 @@ void shuffle_array(int* array, int n) {
 int select_random_questions(Question all_questions[], int total_questions, 
                            Question selected_questions[], int num_to_select,
                            StudentProgress* progress) {
-    // If we don't have enough questions, return error
+
     if (total_questions < num_to_select) {
         printf("Warning: Not enough questions in pool (%d available, %d needed)\n", 
                total_questions, num_to_select);
@@ -117,25 +126,30 @@ int select_random_questions(Question all_questions[], int total_questions,
     int num_available = 0;
     
     for (int i = 0; i < total_questions; i++) {
+
         int is_used = 0;
         for (int j = 0; j < progress->num_used; j++) {
             if (progress->used_questions[j] == i) {
                 is_used = 1;
                 break;
+
             }
         }
+
         if (!is_used) {
             available[num_available++] = i;
         }
     }
     
-    // If we've used all questions, reset the pool
+    // If we've used all questions, reset the question pool
     if (num_available < num_to_select) {
         printf("\nYou've seen all available questions! Resetting question pool...\n");
+
         num_available = 0;
         for (int i = 0; i < total_questions; i++) {
             available[num_available++] = i;
         }
+
         progress->num_used = 0;
     }
     

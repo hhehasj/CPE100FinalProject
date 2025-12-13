@@ -106,7 +106,7 @@ void show_reset_menu(SavedProgress* saved_progress) {
     printf("2. Reset Intermediate level only\n");
     printf("3. Reset Advanced level only\n");
     printf("4. Reset ALL progress\n");
-    printf("5. Cancel (go back)\n");
+    printf("5. Back\n");
     printf("=======================================================\n");
     printf("Your choice: ");
     
@@ -367,9 +367,6 @@ int handle_level(StudentProgress* progress, SavedProgress* saved_progress) {
 
 int main() {
 
-    // Seed random number generator
-    srand(time(NULL));
-    
     SavedProgress saved_progress;
     
     // Check if progress file exists

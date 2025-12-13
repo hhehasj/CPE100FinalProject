@@ -4,10 +4,17 @@
 
 const char* get_teaching_filename(Level level) {
     switch(level) {
-        case BEGINNER: return "teaching_beginner.txt";
-        case INTERMEDIATE: return "teaching_intermediate.txt";
-        case ADVANCED: return "teaching_advanced.txt";
-        default: return NULL;
+        case BEGINNER: 
+            return "teaching_beginner.txt";
+            
+        case INTERMEDIATE: 
+            return "teaching_intermediate.txt";
+
+        case ADVANCED: 
+            return "teaching_advanced.txt";
+
+        default: 
+            return NULL;
     }
 }
 

@@ -36,8 +36,8 @@ int ask_question(Question* q, int show_hint) {
 
         char answer;
         int valid_input = 0;
-        
 
+        
         while ( !valid_input ) {
             printf("\nYour answer (A/B/C/D): ");
             scanf(" %c", &answer);
@@ -85,12 +85,15 @@ int run_quiz(Question questions[], int num_questions, StudentProgress* progress)
         case BEGINNER:
             printf("Passing score: 5/5 (100%%)\n");
             break;
+            
         case INTERMEDIATE:
             printf("Passing score: 4/5 (80%%)\n");
             break;
+
         case ADVANCED:
             printf("Passing score: 3/5 (60%%)\n");
             break;
+            
     }
     
     if (progress->hint_mode) {
@@ -119,6 +122,7 @@ int run_quiz(Question questions[], int num_questions, StudentProgress* progress)
                 } else {
                     printf("The correct answer is: %.2f\n", questions[i].data.num.correct_answer);
                 }
+
             }
         }
         

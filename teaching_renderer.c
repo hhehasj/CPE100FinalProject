@@ -26,11 +26,20 @@ void display_section(TeachingSection* section) {
 }
 
 void display_teaching_content(TeachingSection sections[], int num_sections, Level level) {
+
     const char* level_name;
     switch(level) {
-        case BEGINNER: level_name = "BEGINNER"; break;
-        case INTERMEDIATE: level_name = "INTERMEDIATE"; break;
-        case ADVANCED: level_name = "ADVANCED"; break;
+        case BEGINNER: 
+            level_name = "BEGINNER"; 
+            break;
+
+        case INTERMEDIATE: 
+            level_name = "INTERMEDIATE"; 
+            break;
+
+        case ADVANCED: 
+            level_name = "ADVANCED"; 
+            break;
     }
     
     printf("\n");

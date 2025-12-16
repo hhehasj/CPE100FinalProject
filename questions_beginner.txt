@@ -24,7 +24,6 @@ C:x
 D:2x
 ANSWER:D
 HINT:Use the power rule: d/dx(x^n) = n*x^(n-1).
-TYPE:MC
 
 TYPE:MC
 QUESTION:What is the power rule for derivatives?
